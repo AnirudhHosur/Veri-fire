@@ -11,17 +11,20 @@ const News = () => {
             try {
                 // Fetch data from all relevant endpoints
                 const [bbcResponse, cbcResponse, alJazeeraResponse] = await Promise.all([
-                    axios.get('http://localhost:5000/api/headlines'),
-                    axios.get('http://localhost:5000/api/cbc-data'),
-                    axios.get('http://localhost:5000/api/al-jazeera')
+                    axios.get('https://5j6emnbnq6.execute-api.us-west-2.amazonaws.com/Dev/getHeadlines'),
+                    axios.get('https://5j6emnbnq6.execute-api.us-west-2.amazonaws.com/Dev/getCBCData'),
+                    axios.get('https://5j6emnbnq6.execute-api.us-west-2.amazonaws.com/Dev/getJazeeraData')
                 ]);
 
                 // Parse and set BBC data
                 const bbcData = JSON.parse(bbcResponse.data.body);
+                console.log('BBC', bbcData)
                 // Parse and set CBC data
                 const cbcData = JSON.parse(cbcResponse.data.body);
+                console.log('BBC', cbcData)
                 // Parse and set Al Jazeera data
                 const alJazeeraData = JSON.parse(alJazeeraResponse.data.body);
+                console.log('BBC', alJazeeraData)
 
                 setNewsData({ bbc: bbcData, cbc: cbcData, alJazeera: alJazeeraData });
             } catch (error) {

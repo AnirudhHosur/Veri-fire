@@ -11,7 +11,7 @@ const NearbyPlaces = () => {
     const longitude = -121.334;
 
     useEffect(() => {
-        axios.post('http://localhost:5000/api/calculate', {
+        axios.post('https://5j6emnbnq6.execute-api.us-west-2.amazonaws.com/Dev/calculate', {
             latitude,
             longitude
         })

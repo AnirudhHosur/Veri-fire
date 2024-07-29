@@ -9,14 +9,11 @@ const GovernmentSource = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/alerts');
-
-                // Check if the response body is present and not undefined
-                console.log('Data', response.data);
-                const responseBody = response.data;
-                if (responseBody) {
+                const response = await axios.get('https://5j6emnbnq6.execute-api.us-west-2.amazonaws.com/Dev/data');
+                const data = JSON.parse(response.data.body);
+                if (data) {
                     // Sort data by timestamp in descending order
-                    const sortedData = responseBody.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                    const sortedData = data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
                     // Filter data to include only alerts
                     const alerts = sortedData.filter(item => item.type === 'Alert');
